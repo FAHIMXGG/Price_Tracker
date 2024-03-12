@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const SearchBar = () => {
     const [searchPrompt, setSearchPrompt] = useState('')
-    const handleSubmit = () =>{
-        
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) =>{
+        event.preventDefault()
     }
     return (
         <form action="" className='flex flex-warp gap-5 mt-12'
