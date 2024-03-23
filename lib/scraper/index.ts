@@ -1,3 +1,26 @@
 export async function ScrapeAmazonProduct(url: string){
-    
+    if(!url) return
+
+
+    //brightData configuration
+    const username = String(process.env.BRIGHT_DATA_USERNAME);
+    const password = String(process.env.BRIGHT_DATA_PASSWORD);
+    const port = 22225
+    const session_id = (1000000 * Math.random()) | 0;
+
+    const options = {
+        auth:{
+            username: `${username}-session-${session_id}`,
+            password,
+        },
+        host: 'brd.superproxy.io:22225',
+        port,
+        rejectUnauthorized: false,
+    }
+
+    try {
+        
+    } catch (error:any) {
+        throw new Error(`Failed to scrape Amazon Product: ${error.message}`)
+    }
 }
