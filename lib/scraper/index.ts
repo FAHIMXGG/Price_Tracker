@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function ScrapeAmazonProduct(url: string){
     if(!url) return
 
@@ -19,7 +21,9 @@ export async function ScrapeAmazonProduct(url: string){
     }
 
     try {
-        
+        // fetch the product page
+        const response = await axios.get(url, options);
+        console.log(response.data)
     } catch (error:any) {
         throw new Error(`Failed to scrape Amazon Product: ${error.message}`)
     }
