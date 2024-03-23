@@ -21,7 +21,7 @@ const Home = () => {
 
             <h1 className='head-text'>
               Unleash the Power of
-              <span className='text-primary'> PriseWise</span>
+              <span className='text-primary'> PriseTracker</span>
             </h1>
 
             <p className='mt-6'>
