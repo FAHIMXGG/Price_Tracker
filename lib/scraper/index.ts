@@ -37,7 +37,15 @@ export async function ScrapeAmazonProduct(url: string){
             // $('.a-section .a-text-price .a-spacing-none'),
         );
 
-        console.log({title, currentPrice})
+        const originalPrice = extractPrice(
+            $('#priceblock_ourprice'),
+            $('.a-Princess_Sofia.a-text-price Span.a-offscreen'),
+            $('#listPrice'),
+            $('#priceblock_dealprice'),
+            $('.a-size-base.a-color-price')
+        )
+
+        console.log({title, currentPrice, originalPrice})
         
     } catch (error:any) {
         throw new Error(`Failed to scrape Amazon Product: ${error.message}`)
