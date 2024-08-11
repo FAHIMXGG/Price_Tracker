@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as cheerio from 'cheerio';
 import { extractPrice } from "../utils";
+import test from "node:test";
 
 export async function ScrapeAmazonProduct(url: string){
     if(!url) return
@@ -64,6 +65,6 @@ export async function ScrapeAmazonProduct(url: string){
         console.log({title, currentPrice, originalPrice, outOfStock, imageUrls})
         
     } catch (error:any) {
-        throw new Error(`Failed to scrape Amazon Product: ${error.message}`)
+        throw new Error(`Failed to scrape Amazon Produc: ${error.message}`)
     }
 }
