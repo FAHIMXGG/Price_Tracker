@@ -1,12 +1,25 @@
 "use client"
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { Button, Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import Image from 'next/image';
 
 const Modal = () => {
     let [isOpen, setIsOpen] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [email, setEmail] = useState('')
 
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setIsSubmitting(true)
+
+        //to
+
+        setIsSubmitting(false)
+        setEmail('')
+        close()
+    }
+    
     // const openModal = () => setIsOpen(true)
     // const closeModal = () => setIsOpen(false)
     const open = () => setIsOpen(true)
@@ -47,7 +60,7 @@ const Modal = () => {
                                 Never miss a bargain again with our timely alerts!
                             </p>
 
-                            <form action="" className='flex flex-col mt-5'>
+                            <form action="" className='flex flex-col mt-5' onSubmit={handleSubmit}>
                                 <label htmlFor="emil" className='text-sm font-medium text-gray-700'>
                                     Email address
                                 </label>
@@ -63,12 +76,14 @@ const Modal = () => {
                                     type="email" 
                                     name="" 
                                     id="email" 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className='dialog-input bg-transparent'
                                     placeholder='Enter your email address'
                                     />
                                 </div>
                                 <button type='submit' className='dialog-btn'>
-                                    Track
+                                    {isSubmitting ? 'Submitting...' : 'Track'}
                                 </button>
                             </form>
 
