@@ -17,11 +17,11 @@ export async function ScrapeAndStoreProduct(productUrl: string){
 
     if (!scrapedProduct) return;
     let product = scrapedProduct;
-    const exportedProduct = await Product.findOne({ url: scrapedProduct.url })
+    const existingProduct = await Product.findOne({ url: scrapedProduct.url })
 
-    if (exportedProduct) {
+    if (existingProduct) {
         const updatedPriceHistory : any = [
-            ...exportedProduct.priceHistory,
+            ...existingProduct.priceHistory,
             {price: scrapedProduct.currentPrice}
         ]
 
