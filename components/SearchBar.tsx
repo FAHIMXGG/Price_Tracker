@@ -2,6 +2,8 @@
 
 import { ScrapeAndStoreProduct } from "@/lib/actions";
 import { FormEvent, useState } from "react";
+import { useRouter } from 'next/navigation';
+
 
 const isValidAmazonProductURl = (url: string) =>{
     try {
@@ -29,41 +31,46 @@ const isValidAmazonProductURl = (url: string) =>{
 const SearchBar = () => {
     const [searchPrompt, setSearchPrompt] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) =>{
-        event.preventDefault()
+    const router = useRouter(); 
 
-        const isValidLink = isValidAmazonProductURl(searchPrompt)
-        if (!isValidLink) return alert("Please enter a valid Amazon Product URL")
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const isValidLink = isValidAmazonProductURl(searchPrompt);
+        if (!isValidLink) return alert("Please enter a valid Amazon Product URL");
 
         try {
-            setIsLoading(true)
-            //scrape the product
-            const product = await ScrapeAndStoreProduct(searchPrompt)
-            
+            setIsLoading(true);
+            const productId = await ScrapeAndStoreProduct(searchPrompt);
+
+            if (productId) {
+                router.push(`/products/${productId}`);
+            } else {
+                alert("Failed to scrape product.");
+            }
         } catch (error) {
-            
-        }finally {
-            setIsLoading(false)
+            alert("Something went wrong. Check console.");
+            console.log(error);
+        } finally {
+            setIsLoading(false);
         }
-    }
+    };
 
     return (
-        <form action="" className='flex flex-warp gap-5 mt-12'
-        onSubmit={handleSubmit}>
-            <input 
+        <form className='flex flex-warp gap-5 mt-12' onSubmit={handleSubmit}>
+            <input
                 type="text"
                 value={searchPrompt}
                 onChange={(e) => setSearchPrompt(e.target.value)}
                 placeholder="Enter product link"
                 className="searchbar-input"
             />
-            <button type="submit" className="searchbar-btn"
-            disabled={searchPrompt ===''}
-            >
-                {isLoading ? 'searching...' : 'Search'}
+            <button type="submit" className="searchbar-btn" disabled={searchPrompt === ''}>
+                {isLoading ? 'Searching...' : 'Search'}
             </button>
         </form>
     );
 };
+
 
 export default SearchBar;
