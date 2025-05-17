@@ -71,6 +71,20 @@ export async function getAllProducts() {
         console.log(error)
     }
 }
+
+// export async function getAllProducts() {
+//     try {
+//         await connectToDB();
+
+//         const products = await Product.find().lean(); // <-- returns plain JS objects
+
+//         return JSON.parse(JSON.stringify(products)); // <-- removes any hidden symbols/circular references
+//     } catch (error) {
+//         console.log('Error fetching products:', error);
+//         return [];
+//     }
+// }
+
 export async function getSimilarProducts(productId: string) {
     try {
         connectToDB()

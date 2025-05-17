@@ -35,7 +35,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
         <div className='flex-1 flex flex-col'>
           <div className='flex justify-between items-start gap-5 flex-wrap pb-6'>
             <div className='flex flex-col gap-3'>
-              <p className='text-[28px] text-secondary font-semibold'>{product.title}
+              <p className='text-[28px] text-primary font-semibold'>{product.title}
               </p>
 
               <Link
@@ -79,7 +79,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           </div>
           <div className='product-info'>
             <div className='flex flex-col gap-2'>
-              <p className='text-[34px] text-secondary font-bold'>
+              <p className='text-[34px] text-primary font-bold'>
                 {product.currency} {formatNumber(product.currentPrice)}
               </p>
               <p className='text-[21px] text-black opacity-50 line-through'>
@@ -106,7 +106,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                     width={16}
                     height={16}
                   />
-                  <p className='text-sm text-secondary font-semibold'>
+                  <p className='text-sm text-primary font-semibold'>
                     {product.reviewsCount} Reviews
                   </p>
                 </div>
@@ -149,7 +149,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       </div>
       <div className="flex flex-col gap-16">
         <div className="flex flex-col gap-5">
-          <h3 className="text-2xl text-secondary font-semibold">
+          <h3 className="text-2xl text-primary font-semibold">
             Product Description
           </h3>
 
