@@ -42,7 +42,7 @@ const Home = async () => {
         <h2 className='section-text'>
           Trending
         </h2>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6'>
+        <div className='flex flex-warp gap-x-8 gap-y-16 items-end'>
           {
             allProducts?.map((product) =>(
               <ProductCard key={product._id} product={product} />

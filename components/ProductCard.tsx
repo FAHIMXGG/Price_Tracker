@@ -1,42 +1,43 @@
-import type { Product } from "@/types"
-import Image from "next/image"
-import Link from "next/link"
+import { Product } from '@/types';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 interface Props {
-  product: Product
+    product: Product
 }
 
 const ProductCard = ({ product }: Props) => {
-  return (
-    <div className="hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden">
-      <Link href={`/products/${product._id}`} className="block">
-        <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden ">
-          <Image
-            src={product.image || "/placeholder.svg"}
-            alt={product.title}
-            width={200}
-            height={200}
-            className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
-          />
+    return (
+        <div>
+            <Link href={`/products/${product._id}`} className='Product-card items-center'>
+                <div className='product-card_img-container'>
+                    <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={200}
+                    height={200}
+                    className='product-card-img'
+                    />
+                </div>
+
+                <div className='flex flex-col gap-3 '>
+                    <h3 className=''>{product.title}</h3>
+
+                    <div className='flex justify-between'>
+                        <p className='text-black opacity-50 text-lg capitalize'>
+                            {product.category}
+                        </p>
+
+                        <p className='text-black text-lg font-semibold'>
+                            <span>{product?.currency}</span>
+                            <span>{product?.currentPrice}</span>
+                        </p>
+                    </div>
+                </div>
+            </Link>
         </div>
+    );
+};
 
-        <div className="p-4 bg-white">
-          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-            {product.title.length > 30 ? `${product.title.substring(0, 30)}...` : product.title}
-          </h3>
-
-          <div className="flex justify-between items-center">
-            <p className="text-gray-500 text-sm md:text-base capitalize">{product.category}</p>
-
-            <p className="text-primary font-bold text-sm md:text-base">
-              <span className="mr-1">{product?.currency}</span>
-              <span>{product?.currentPrice}</span>
-            </p>
-          </div>
-        </div>
-      </Link>
-    </div>
-  )
-}
-
-export default ProductCard
+export default ProductCard;
